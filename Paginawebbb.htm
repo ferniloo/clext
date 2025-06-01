@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regiones de Chile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      text-align: center;
+    }
+    .regiones {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .regiones img {
+      cursor: pointer;
+      max-width: 300px;
+      transition: transform 0.2s;
+    }
+    .regiones img:hover {
+      transform: scale(1.05);
+    }
+    .info {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Regiones de Chile</h1>
+  <div class="regiones" id="regiones">
+    <!-- Imágenes insertadas con JS -->
+  </div>
+  <div class="info" id="info">
+    <h2 id="regionTitulo"></h2>
+    <p id="regionDescripcion"></p>
+  </div>
+
+  <script>
+    const regiones = [
+      "Arica y Parinacota", "Tarapacá", "Antofagasta", "Atacama", "Coquimbo",
+      "Valparaíso", "Metropolitana", "Libertador B. O'Higgins", "Maule",
+      "Ñuble", "Biobío", "La Araucanía", "Los Ríos", "Los Lagos",
+      "Aysén", "Magallanes y Antártica Chilena"
+    ];
+
+    const especies = [
+      "Taruca, Picaflor de Arica",
+      "Gato andino, Guanaco",
+      "Tamarugo, Chungungo",
+      "Yaca, Guanaco",
+      "Pingüino de Humboldt",
+      "Sapo de Valparaíso",
+      "Carpintero negro",
+      "Rana chilena",
+      "Zorro culpeo",
+      "Rana de río Ñuble",
+      "Huillín",
+      "Ranita de Darwin",
+      "Pudu, Martín pêscador chico",
+      "Zorro chilote",
+      "Cóndor, Huemul",
+      "Huemul, Foca leopardo"
+    ];
+
+    const regionesContainer = document.getElementById("regiones");
+    const infoBox = document.getElementById("info");
+    const titulo = document.getElementById("regionTitulo");
+    const descripcion = document.getElementById("regionDescripcion");
+
+    for (let i = 0; i < 16; i++) {
+      const img = document.createElement("img");
+      img.src = `Regiones/${i+1}.png`;
+      img.alt = regiones[i];
+      img.onclick = () => {
+        titulo.textContent = regiones[i];
+        descripcion.textContent = `Especies en peligro de extinción: ${especies[i]}.`;
+        infoBox.style.display = "block";
+        infoBox.scrollIntoView({ behavior: "smooth" });
+      };
+      regionesContainer.appendChild(img);
+    }
+  </script>
+</body>
+</html>
